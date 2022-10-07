@@ -1,9 +1,10 @@
-import { ChakraProvider, Container, VStack } from "@chakra-ui/react";
-import Board from "components/Board";
-import GameControls from "components/GameControls";
-import GameProgress from "components/GameProgress";
-import { FC } from "react";
-import { RecoilRoot } from "recoil";
+import { ChakraProvider, Container, VStack } from '@chakra-ui/react';
+import Board from 'components/Board';
+import GameControls from 'components/GameControls';
+import GameProgress from 'components/GameProgress';
+import { FC } from 'react';
+import { RecoilRoot } from 'recoil';
+import GameStats from './GameStats';
 
 const App: FC = () => (
   <ChakraProvider>
@@ -12,6 +13,7 @@ const App: FC = () => (
         <Board />
         <GameProgress />
         <GameControls />
+        <GameStats />
       </Container>
     </RecoilRoot>
   </ChakraProvider>

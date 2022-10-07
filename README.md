@@ -31,10 +31,9 @@ We have created a very simple Connect 4 game using some of our favorite [front-e
 - [Chakra UI](https://chakra-ui.com/docs/components)
 - [RecoilJS](https://recoiljs.org/)
 
-
 ## To do list
 
-[] - Persist state game
+[x] - Persist state game
 [] - Record stats
 [] - Diagonally win
 [] - Improve performance

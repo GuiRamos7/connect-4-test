@@ -1,13 +1,15 @@
-import { boardRows } from "const";
-import { useRecoilState } from "recoil";
-import { boardState, gameOverState, playerState } from "state";
+import { boardRows } from 'const';
+import { useRecoilState } from 'recoil';
+import { boardState, gameOverState, playerState, statsState } from 'state';
+import { Player } from 'types';
 
-const testWin = (arr: number[]): boolean => /1{4}|2{4}/.test(arr.join(""));
+const testWin = (arr: number[]): boolean => /1{4}|2{4}/.test(arr.join(''));
 
 const usePlayPiece = () => {
   const [board, setBoard] = useRecoilState(boardState);
   const [player, setPlayerTurn] = useRecoilState(playerState);
   const [gameOver, setGameOver] = useRecoilState(gameOverState);
+  const [wins, setWins] = useRecoilState(statsState);
 
   return (col: number) => {
     // Prevent adding a piece when the game is over
@@ -33,6 +35,7 @@ const usePlayPiece = () => {
       // TODO: Did win diagonally
     ) {
       setGameOver(true);
+      setWins([...wins, player]);
     } else {
       setPlayerTurn(player === 1 ? 2 : 1);
     }

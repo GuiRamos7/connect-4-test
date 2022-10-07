@@ -1,11 +1,17 @@
 import { boardCols } from 'const';
 import { atom } from 'recoil';
-import { Board, Player } from 'types';
+import { Board, Player, Stats } from 'types';
 import { recoilPersist } from 'recoil-persist';
 
 const { persistAtom } = recoilPersist({
-  key: 'recoil-persist', // this key is using to store data in local storage
-  storage: localStorage, // configurate which stroage will be used to store the data
+  key: 'recoil-persist',
+  storage: localStorage,
+});
+
+export const statsState = atom<Stats>({
+  key: 'statsState',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const boardState = atom<Board>({
