@@ -2,8 +2,7 @@ import { Flex, Text } from '@chakra-ui/react';
 import { playerName } from 'const';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { playerState, statsState } from 'state';
-import { Player } from 'types';
+import { statsState } from 'state';
 
 const GameStats: FC = () => {
   const stats = useRecoilValue(statsState);
@@ -23,10 +22,10 @@ const GameStats: FC = () => {
       </Text>
       <Flex flexDir='column' align='start'>
         <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
-          {playerName[1]} stats: {stats.filter((el) => el === 1).length}
+          {playerName[1]} stats: {stats.playerOne}
         </Text>
         <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
-          {playerName[2]} stats: {stats.filter((el) => el === 2).length}
+          {playerName[2]} stats: {stats.playerTwo}
         </Text>
       </Flex>
     </Flex>

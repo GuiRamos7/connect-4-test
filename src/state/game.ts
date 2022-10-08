@@ -10,7 +10,7 @@ const { persistAtom } = recoilPersist({
 
 export const statsState = atom<Stats>({
   key: 'statsState',
-  default: [],
+  default: { playerOne: 0, playerTwo: 0 },
   effects_UNSTABLE: [persistAtom],
 });
 

@@ -1,7 +1,6 @@
 import { boardRows } from 'const';
 import { useRecoilState } from 'recoil';
 import { boardState, gameOverState, playerState, statsState } from 'state';
-import { Player } from 'types';
 
 const testWin = (arr: number[]): boolean => /1{4}|2{4}/.test(arr.join(''));
 
@@ -34,8 +33,12 @@ const usePlayPiece = () => {
       testWin(newBoard.map((col) => col[row] || 0)) // Did win horizontally
       // TODO: Did win diagonally
     ) {
+      const playerWinner = player === 1 ? 'playerOne' : 'playerTwo';
       setGameOver(true);
-      setWins([...wins, player]);
+      setWins({
+        ...wins,
+        [playerWinner]: wins[playerWinner] + 1,
+      });
     } else {
       setPlayerTurn(player === 1 ? 2 : 1);
     }
