@@ -28,6 +28,7 @@ const usePlayPiece = () => {
 
     const row = newBoard[col].length - 1;
 
+    // Checks who wins and add one point
     if (
       testWin(newBoard[col]) || // Did win vertically
       testWin(newBoard.map((col) => col[row] || 0)) // Did win horizontally

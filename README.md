@@ -34,6 +34,6 @@ We have created a very simple Connect 4 game using some of our favorite [front-e
 ## To do list
 
 [x] - Persist state game
-[] - Record stats
+[x] - Record stats
 [] - Diagonally win
 [] - Improve performance
