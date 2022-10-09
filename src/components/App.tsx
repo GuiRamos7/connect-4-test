@@ -7,7 +7,6 @@ import { theme } from 'styles/theme';
 const Board = React.lazy(() => import('components/Board'));
 const GameControls = React.lazy(() => import('components/GameControls'));
 const GameProgress = React.lazy(() => import('components/GameProgress'));
-const GameStats = React.lazy(() => import('components/GameStats'));
 
 const App: FC = () => (
   <ChakraProvider theme={theme}>
@@ -17,7 +16,6 @@ const App: FC = () => (
           <Board />
           <GameProgress />
           <GameControls />
-          <GameStats />
         </Container>
       </RecoilRoot>
     </Suspense>
