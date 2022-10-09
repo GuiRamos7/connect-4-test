@@ -1,11 +1,11 @@
-import { Circle, Flex, chakra, shouldForwardProp } from '@chakra-ui/react';
+import { Circle, Flex } from '@chakra-ui/react';
 import { boardRows, playerColor } from 'const';
 import { usePlayPiece } from 'hooks';
 import { FC, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { boardState, gameModeState, gameOverState, playerState } from 'state';
 import { Player } from 'types';
-import { motion, isValidMotionProp } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const padCol = (col: number[]): number[] =>
   col.join('').padEnd(boardRows, '0').split('').map(Number);
