@@ -3,4 +3,5 @@ export type Board = Player[][];
 export type Stats = {
   playerOne: number;
   playerTwo: number;
+  draws: number;
 };

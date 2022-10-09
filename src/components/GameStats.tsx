@@ -27,6 +27,9 @@ const GameStats: FC = () => {
         <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
           {playerName[2]} stats: {stats.playerTwo}
         </Text>
+        <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
+          Draws stats: {stats.draws}
+        </Text>
       </Flex>
     </Flex>
   );
