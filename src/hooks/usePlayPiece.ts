@@ -28,7 +28,7 @@ const usePlayPiece = () => {
       i === col ? [...column, player] : column
     );
 
-    if (newBoard.flat().length === 42) {
+    if (!testWin(newBoard) && newBoard.flat().length === 42) {
       setGameOver(true);
       setWins({ ...wins, draws: wins.draws + 1 });
     }
