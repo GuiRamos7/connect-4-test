@@ -23,9 +23,16 @@ export const boardState = atom<Board>({
 export const playerState = atom<Player>({
   key: 'playerState',
   default: 1,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const gameOverState = atom<boolean>({
   key: 'gameOverState',
   default: false,
+});
+
+export const gameModeState = atom<'bot' | 'multiplayer'>({
+  key: 'gameMode',
+  default: 'multiplayer',
+  effects_UNSTABLE: [persistAtom],
 });

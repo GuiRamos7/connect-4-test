@@ -1,9 +1,9 @@
 import { Circle, Flex } from '@chakra-ui/react';
 import { boardRows, playerColor } from 'const';
 import { usePlayPiece } from 'hooks';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { boardState, gameOverState, playerState } from 'state';
+import { boardState, gameModeState, gameOverState, playerState } from 'state';
 import { Player } from 'types';
 
 const padCol = (col: number[]): number[] =>
@@ -14,6 +14,16 @@ const Board: FC = () => {
   const board = useRecoilValue(boardState);
   const player = useRecoilValue(playerState);
   const gameOver = useRecoilValue(gameOverState);
+  const gameMode = useRecoilValue(gameModeState);
+  const [lastPositionPlay, setLastPositionPlay] = useState(1);
+
+  useEffect(() => {
+    console.log(board);
+    if (gameMode === 'bot' && player === 2) {
+      const min = lastPositionPlay === 1 ? 1 : lastPositionPlay - 1;
+      play(Math.floor(Math.random() * (lastPositionPlay + 1 - min) + min));
+    }
+  }, [player]);
 
   return (
     <Flex justify='center'>
@@ -21,7 +31,10 @@ const Board: FC = () => {
         <Flex
           key={i}
           role='group'
-          onClick={() => play(i)}
+          onClick={() => {
+            play(i);
+            setLastPositionPlay(i);
+          }}
           flexDirection='column-reverse'
           cursor={gameOver ? 'auto' : 'pointer'}
         >

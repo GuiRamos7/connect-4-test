@@ -1,9 +1,17 @@
 import { boardRows } from 'const';
 import { useRecoilState } from 'recoil';
-import { boardState, gameOverState, playerState, statsState } from 'state';
+import {
+  boardState,
+  gameModeState,
+  gameOverState,
+  playerState,
+  statsState,
+} from 'state';
 
-const testWin = (arr: number[]): boolean => /1{4}|2{4}/.test(arr.join(''));
-
+const testWin = (arr: number[][]): boolean =>
+  /([12])(\1{3}|(.{5}\1){3}|(.{6}\1){3}|(.{7}\1){3})/.test(
+    arr.map((col) => col.join('').padEnd(6, '0')).join(',')
+  );
 const usePlayPiece = () => {
   const [board, setBoard] = useRecoilState(boardState);
   const [player, setPlayerTurn] = useRecoilState(playerState);
@@ -30,9 +38,10 @@ const usePlayPiece = () => {
 
     // Checks who wins and add one point
     if (
-      testWin(newBoard[col]) || // Did win vertically
-      testWin(newBoard.map((col) => col[row] || 0)) // Did win horizontally
-      // TODO: Did win diagonally
+      testWin(newBoard)
+      // Did win vertically
+      // Did win horizontally
+      // Did win diagonally
     ) {
       const playerWinner = player === 1 ? 'playerOne' : 'playerTwo';
       setGameOver(true);
