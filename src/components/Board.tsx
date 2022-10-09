@@ -1,13 +1,13 @@
+import React, { FC, useEffect, useState } from 'react';
 import { Circle, Flex } from '@chakra-ui/react';
 import { boardRows, playerColor } from 'const';
+import { motion } from 'framer-motion';
 import { usePlayPiece } from 'hooks';
-import { FC, useEffect, useState } from 'react';
+import { AiFillTrophy, AiFillEdit } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
 import { boardState, gameModeState, gameOverState, playerState } from 'state';
 import { Player } from 'types';
-import { motion } from 'framer-motion';
-import { AiFillTrophy } from 'react-icons/ai';
-import React from 'react';
+import EditUser from './EditUser';
 
 const GameStats = React.lazy(() => import('components/GameStats'));
 
@@ -33,10 +33,20 @@ const Board: FC = () => {
 
   return (
     <>
-      <Flex my='3'>
-        <AiFillTrophy cursor='pointer' onClick={() => setStatsIsOpen(true)} />
+      <Flex my='3' gap='5'>
+        <AiFillTrophy
+          fontSize={22}
+          cursor='pointer'
+          onClick={() => setStatsIsOpen(true)}
+        />
+        <AiFillEdit
+          fontSize={22}
+          cursor='pointer'
+          onClick={() => setStatsIsOpen(true)}
+        />
       </Flex>
       <GameStats isOpen={statsIsOpen} onClose={() => setStatsIsOpen(false)} />
+      <EditUser />
       <Flex justify='center'>
         {board.map((col, i) => (
           <Flex
@@ -55,10 +65,13 @@ const Board: FC = () => {
                   scale: [1, 1.05, 1],
                 }}
                 m={1}
-                size='40px'
+                size='50px'
                 key={`${i}-${j}`}
                 boxShadow='inner'
-                bg={playerColor[p as Player] || 'gray.700'}
+                border=' dotted'
+                borderWidth={playerColor[p as Player] ? '3px' : '4px'}
+                borderColor='gray.900'
+                bg={playerColor[p as Player] || 'transparent'}
               />
             ))}
             <MotionCircle
