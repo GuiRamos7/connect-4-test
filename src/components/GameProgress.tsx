@@ -10,7 +10,6 @@ const GameProgress: FC = () => {
   const gameOver = useRecoilValue(gameOverState);
   const name = playerName[player];
   const stats = useRecoilValue(statsState);
-  console.log('board');
   return (
     <Heading as='h3' size='lg'>
       {board.flat().length === 42 && 'Draw'}

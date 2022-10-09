@@ -23,11 +23,15 @@ const GameControls: FC = () => {
           setGameMode(gameMode === 'multiplayer' ? 'bot' : 'multiplayer');
           handleReset();
         }}
-        colorScheme='blue'
+        bg='purple.500'
+        _hover={{
+          opacity: 0.9,
+        }}
       >
         {gameMode === 'multiplayer' ? 'Play against bot ' : 'Play multiplayer'}
       </Button>
       <Button
+        colorScheme='red'
         onClick={handleReset}
         isDisabled={!board.some((col) => col.length)}
       >

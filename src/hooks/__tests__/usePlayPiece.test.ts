@@ -1,8 +1,8 @@
-import { act, renderHook } from "@testing-library/react";
-import { usePlayPiece } from "hooks";
-import { RecoilRoot, useRecoilValue } from "recoil";
-import { boardState, gameOverState, playerState } from "state";
-import { Board, Player } from "types";
+import { act, renderHook } from '@testing-library/react';
+import { usePlayPiece } from 'hooks';
+import { RecoilRoot, useRecoilValue } from 'recoil';
+import { boardState, gameOverState, playerState } from 'state';
+import { Board, Player } from 'types';
 
 const render = () => {
   const { result } = renderHook(
@@ -32,7 +32,7 @@ const render = () => {
   };
 };
 
-test("should win with 4 in a row vertically", () => {
+test('should win with 4 in a row vertically', () => {
   const { play, assertGame } = render();
 
   [0, 1, 0, 1, 0, 1, 0].forEach(play);
@@ -45,7 +45,20 @@ test("should win with 4 in a row vertically", () => {
   assertGame(1, true, [[1, 1, 1, 1], [2, 2, 2], [], [], [], [], []]);
 });
 
-test("should win with 4 in a row horizontally", () => {
+test('should win with 4 in a row diagonal', () => {
+  const { play, assertGame } = render();
+
+  [0, 1, 0, 1, 0, 1, 0].forEach(play);
+
+  // Player 1 won the game!
+  assertGame(1, true, [[1, 1, 1, 1], [2, 2, 2], [], [], [], [], []]);
+
+  play(1);
+  // Can't play any more pieces after the game is over
+  assertGame(1, true, [[1, 1, 1, 1], [2, 2, 2], [], [], [], [], []]);
+});
+
+test('should win with 4 in a row horizontally', () => {
   const { play, assertGame } = render();
 
   [0, 6, 1, 6, 3, 6, 4, 5, 2].forEach(play);
@@ -54,7 +67,7 @@ test("should win with 4 in a row horizontally", () => {
   assertGame(1, true, [[1], [1], [1], [1], [1], [2], [2, 2, 2]]);
 });
 
-test("should not play a piece when the column is full", () => {
+test('should not play a piece when the column is full', () => {
   const { play, assertGame } = render();
 
   [0, 0, 0, 0, 0, 0].forEach(play);

@@ -10,9 +10,9 @@ const GameStats: FC = () => {
   return (
     <Flex
       w='65%'
-      bg='gray.300'
+      bg='gray.700'
       justify='center'
-      p='2'
+      p='4'
       borderRadius='10'
       flexDir='column'
       align='start'
@@ -21,13 +21,13 @@ const GameStats: FC = () => {
         Stats
       </Text>
       <Flex flexDir='column' align='start'>
-        <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
+        <Text as='p' fontSize='xl' textAlign='center'>
           {playerName[1]} stats: {stats.playerOne}
         </Text>
-        <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
+        <Text as='p' fontSize='xl' textAlign='center'>
           {playerName[2]} stats: {stats.playerTwo}
         </Text>
-        <Text as='p' fontWeight='bold' fontSize='xl' textAlign='center'>
+        <Text as='p' fontSize='xl' textAlign='center'>
           Draws stats: {stats.draws}
         </Text>
       </Flex>

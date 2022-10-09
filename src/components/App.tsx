@@ -1,11 +1,8 @@
 import React, { Suspense } from 'react';
 import { ChakraProvider, Container, VStack } from '@chakra-ui/react';
-// import Board from 'components/Board';
-// import GameControls from 'components/GameControls';
-// import GameProgress from 'components/GameProgress';
 import { FC } from 'react';
 import { RecoilRoot } from 'recoil';
-// import GameStats from '';
+import { theme } from 'styles/theme';
 
 const Board = React.lazy(() => import('components/Board'));
 const GameControls = React.lazy(() => import('components/GameControls'));
@@ -13,7 +10,7 @@ const GameProgress = React.lazy(() => import('components/GameProgress'));
 const GameStats = React.lazy(() => import('components/GameStats'));
 
 const App: FC = () => (
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <Suspense fallback={<div>Loading...</div>}>
       <RecoilRoot>
         <Container py={4} as={VStack}>

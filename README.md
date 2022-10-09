@@ -32,8 +32,3 @@ We have created a very simple Connect 4 game using some of our favorite [front-e
 - [RecoilJS](https://recoiljs.org/)
 
 ## To do list
-
-[x] - Persist state game
-[x] - Record stats
-[] - Diagonally win
-[] - Improve performance
