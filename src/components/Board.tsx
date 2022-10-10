@@ -75,7 +75,7 @@ const Board: FC = () => {
                     scale: [1, 1.05, 1],
                   }}
                   m={1}
-                  size='50px'
+                  size={['36.5px', '40px']}
                   key={`${i}-${j}`}
                   boxShadow='inner'
                   border=' dotted'
@@ -91,7 +91,7 @@ const Board: FC = () => {
             })}
             <MotionCircle
               m={1}
-              size='40px'
+              size={['36.5px', '40px']}
               boxShadow='base'
               visibility='hidden'
               bg={gameConfig[player === 1 ? 'playerOne' : 'playerTwo'].color}

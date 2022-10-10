@@ -12,7 +12,7 @@ const App: FC = () => (
   <ChakraProvider theme={theme}>
     <Suspense fallback={<div>Loading...</div>}>
       <RecoilRoot>
-        <Container py={4} as={VStack}>
+        <Container py={4} as={VStack} w={['100%', '570px']}>
           <Board />
           <GameProgress />
           <GameControls />
