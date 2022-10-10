@@ -8,7 +8,7 @@ import {
 import { playerName } from 'const';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { statsState } from 'state';
+import { playersConfigState, statsState } from 'state';
 
 interface IGameStatsProps {
   isOpen: boolean;
@@ -17,6 +17,7 @@ interface IGameStatsProps {
 
 const GameStats: FC<IGameStatsProps> = ({ onClose, isOpen }) => {
   const stats = useRecoilValue(statsState);
+  const gameConfig = useRecoilValue(playersConfigState);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -40,10 +41,10 @@ const GameStats: FC<IGameStatsProps> = ({ onClose, isOpen }) => {
           </Text>
           <Flex flexDir='column' align='start'>
             <Text as='p' fontSize='xl' textAlign='center'>
-              {playerName[1]} stats: {stats.playerOne}
+              {gameConfig.playerOne.name} stats: {stats.playerOne}
             </Text>
             <Text as='p' fontSize='xl' textAlign='center'>
-              {playerName[2]} stats: {stats.playerTwo}
+              {gameConfig.playerTwo.name} stats: {stats.playerTwo}
             </Text>
             <Text as='p' fontSize='xl' textAlign='center'>
               Draws stats: {stats.draws}

@@ -5,3 +5,14 @@ export type Stats = {
   playerTwo: number;
   draws: number;
 };
+
+export type PlayerConfig = {
+  playerOne: {
+    color: string;
+    name: string;
+  };
+  playerTwo: {
+    color: string;
+    name: string;
+  };
+};

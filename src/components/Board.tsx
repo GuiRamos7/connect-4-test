@@ -5,7 +5,13 @@ import { motion } from 'framer-motion';
 import { usePlayPiece } from 'hooks';
 import { AiFillTrophy, AiFillEdit } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
-import { boardState, gameModeState, gameOverState, playerState } from 'state';
+import {
+  boardState,
+  gameModeState,
+  gameOverState,
+  playersConfigState,
+  playerState,
+} from 'state';
 import { Player } from 'types';
 import EditUser from './EditUser';
 
@@ -17,12 +23,17 @@ const padCol = (col: number[]): number[] =>
 const Board: FC = () => {
   const MotionCircle = motion(Circle);
   const [statsIsOpen, setStatsIsOpen] = useState(false);
+  const [editIsOpen, setEditIsIsOpen] = useState(false);
+  const [lastPositionPlay, setLastPositionPlay] = useState(1);
+
   const play = usePlayPiece();
   const board = useRecoilValue(boardState);
   const player = useRecoilValue(playerState);
   const gameOver = useRecoilValue(gameOverState);
   const gameMode = useRecoilValue(gameModeState);
-  const [lastPositionPlay, setLastPositionPlay] = useState(1);
+  const gameConfig = useRecoilValue(playersConfigState);
+
+  const name = gameConfig[player === 1 ? 'playerOne' : 'playerTwo'].name;
 
   useEffect(() => {
     if (gameMode === 'bot' && player === 2) {
@@ -42,11 +53,11 @@ const Board: FC = () => {
         <AiFillEdit
           fontSize={22}
           cursor='pointer'
-          onClick={() => setStatsIsOpen(true)}
+          onClick={() => setEditIsIsOpen(true)}
         />
       </Flex>
       <GameStats isOpen={statsIsOpen} onClose={() => setStatsIsOpen(false)} />
-      <EditUser />
+      <EditUser isOpen={editIsOpen} onClose={() => setEditIsIsOpen(false)} />
       <Flex justify='center'>
         {board.map((col, i) => (
           <Flex
@@ -59,27 +70,33 @@ const Board: FC = () => {
             flexDirection='column-reverse'
             cursor={gameOver ? 'auto' : 'pointer'}
           >
-            {padCol(col).map((p, j) => (
-              <MotionCircle
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                m={1}
-                size='50px'
-                key={`${i}-${j}`}
-                boxShadow='inner'
-                border=' dotted'
-                borderWidth={playerColor[p as Player] ? '3px' : '4px'}
-                borderColor='gray.900'
-                bg={playerColor[p as Player] || 'transparent'}
-              />
-            ))}
+            {padCol(col).map((p, j) => {
+              return (
+                <MotionCircle
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  m={1}
+                  size='50px'
+                  key={`${i}-${j}`}
+                  boxShadow='inner'
+                  border=' dotted'
+                  borderWidth={playerColor[p as Player] ? '3px' : '4px'}
+                  borderColor='gray.900'
+                  bg={
+                    p === 0
+                      ? 'transparent'
+                      : gameConfig[p === 1 ? 'playerOne' : 'playerTwo'].color
+                  }
+                />
+              );
+            })}
             <MotionCircle
               m={1}
               size='40px'
               boxShadow='base'
               visibility='hidden'
-              bg={playerColor[player]}
+              bg={gameConfig[player === 1 ? 'playerOne' : 'playerTwo'].color}
               _groupHover={{
                 visibility: gameOver ? 'hidden' : 'visible',
               }}

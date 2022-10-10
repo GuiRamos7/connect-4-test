@@ -2,13 +2,19 @@ import { Heading } from '@chakra-ui/react';
 import { playerName } from 'const';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { boardState, gameOverState, playerState } from 'state';
+import {
+  boardState,
+  gameOverState,
+  playersConfigState,
+  playerState,
+} from 'state';
 
 const GameProgress: FC = () => {
   const player = useRecoilValue(playerState);
   const board = useRecoilValue(boardState);
   const gameOver = useRecoilValue(gameOverState);
-  const name = playerName[player];
+  const gameConfig = useRecoilValue(playersConfigState);
+  const name = gameConfig[player === 1 ? 'playerOne' : 'playerTwo'].name;
 
   return (
     <Heading as='h3' size='lg'>

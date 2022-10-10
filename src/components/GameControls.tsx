@@ -19,21 +19,26 @@ const GameControls: FC = () => {
   return (
     <Flex gap='2'>
       <Button
+        color='white.300'
         onClick={() => {
           setGameMode(gameMode === 'multiplayer' ? 'bot' : 'multiplayer');
           handleReset();
         }}
         bg='purple.500'
         _hover={{
-          opacity: 0.9,
+          opacity: 0.7,
         }}
       >
         {gameMode === 'multiplayer' ? 'Play against bot ' : 'Play multiplayer'}
       </Button>
       <Button
-        colorScheme='red'
+        color='white.300'
+        bg='pink.300'
         onClick={handleReset}
         isDisabled={!board.some((col) => col.length)}
+        _hover={{
+          opacity: 0.7,
+        }}
       >
         Reset
       </Button>

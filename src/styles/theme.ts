@@ -15,6 +15,9 @@ export const theme = extendTheme({
     purple: {
       '500': '#8867fb',
     },
+    pink: {
+      300: '#ff7979',
+    },
   },
   fonts: {
     heading: 'Roboto Mono',
