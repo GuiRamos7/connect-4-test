@@ -33,8 +33,6 @@ const Board: FC = () => {
   const gameMode = useRecoilValue(gameModeState);
   const gameConfig = useRecoilValue(playersConfigState);
 
-  const name = gameConfig[player === 1 ? 'playerOne' : 'playerTwo'].name;
-
   useEffect(() => {
     if (gameMode === 'bot' && player === 2) {
       const min = lastPositionPlay === 1 ? 1 : lastPositionPlay - 1;

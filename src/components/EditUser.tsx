@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { playersConfigState, playerState } from 'state';
+import { useRecoilState } from 'recoil';
+import { playersConfigState } from 'state';
 import { HexColorPicker } from 'react-colorful';
 import { FC, useState } from 'react';
 

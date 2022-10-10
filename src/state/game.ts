@@ -2,7 +2,6 @@ import { boardCols } from 'const';
 import { atom } from 'recoil';
 import { Board, Player, PlayerConfig, Stats } from 'types';
 import { recoilPersist } from 'recoil-persist';
-import { playerColor, playerName } from 'const';
 
 const { persistAtom } = recoilPersist({
   key: 'recoil-persist',

@@ -5,7 +5,6 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { playerName } from 'const';
 import { FC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { playersConfigState, statsState } from 'state';
